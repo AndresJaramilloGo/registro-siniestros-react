@@ -21,7 +21,8 @@ function FormField({
   error = '',
   as = 'input',
   children,
-  required = false
+  required = false,
+  ...rest
 }) {
   // QUÉ HACE: Decide si muestra una casilla común (<input>), una lista desplegable (<select>) o un cuadro largo (<textarea>).
   // POR QUÉ: Así un solo componente sirve para cualquier tipo de campo del formulario sin duplicar código.
@@ -32,7 +33,8 @@ function FormField({
       value,
       onChange,
       placeholder,
-      className: error ? 'form-control input-error' : 'form-control'
+      className: error ? 'form-control input-error' : 'form-control',
+      ...rest
     };
 
     if (as === 'textarea') {

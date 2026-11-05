@@ -80,6 +80,21 @@ body {
   margin-bottom: 1.5rem;
 }
 
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0 1rem;
+}
+
+@media (min-width: 640px) {
+  .form-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .form-grid-full {
+    grid-column: 1 / -1;
+  }
+}
+
 .form-field {
   display: flex;
   flex-direction: column;
