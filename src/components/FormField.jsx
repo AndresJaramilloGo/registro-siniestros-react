@@ -1,14 +1,13 @@
 /**
- * Componente reutilizable FormField.
- * Encapsula la etiqueta (<label>), el control de entrada (<input>, <select> o <textarea>) y el mensaje de error.
- * Existe para evitar duplicar código visual y garantizar accesibilidad consistente en todo el formulario.
+ * Componente FormField.
+ * Dibuja un campo de formulario: su etiqueta (label), su casilla para escribir y su mensaje de error si algo está mal.
+ * Existe para no repetir este mismo diseño en cada uno de los 9 campos.
  */
 
 /**
- * CONCEPTO: Props (Propiedades)
- * Las props son los parámetros o argumentos que recibe un componente de React.
- * Permiten pasar información desde un componente padre (ej. ClaimForm) hacia un componente hijo (ej. FormField)
- * para que este último sea dinámico, configurable y reutilizable.
+ * CONCEPTO: Props
+ * Son datos o funciones que le pasamos a un componente desde afuera (como los argumentos de una función común).
+ * Sirven para que el mismo componente pueda mostrar textos o valores distintos.
  */
 
 function FormField({
@@ -24,12 +23,8 @@ function FormField({
   children,
   required = false
 }) {
-  /**
-   * Renderiza el control HTML adecuado según la propiedad "as".
-   * QUÉ HACE: Devuelve una etiqueta <input>, <select> o <textarea> configurada con sus propiedades comunes.
-   * POR QUÉ SE HIZO ASÍ: Centralizamos en una sola función interna la lógica de renderizado para evitar repetir
-   * las clases de estilo, el enlace de eventos y los atributos de accesibilidad en múltiples lugares.
-   */
+  // QUÉ HACE: Decide si muestra una casilla común (<input>), una lista desplegable (<select>) o un cuadro largo (<textarea>).
+  // POR QUÉ: Así un solo componente sirve para cualquier tipo de campo del formulario sin duplicar código.
   const renderControl = () => {
     const commonProps = {
       id,
@@ -68,4 +63,3 @@ function FormField({
 }
 
 export default FormField;
-

@@ -1,32 +1,25 @@
-/**
+  /**
  * Componente principal App.
- * Actúa como contenedor raíz de la aplicación de Registro de Siniestros.
- * Existe para ensamblar la interfaz de usuario y coordinar la vista del formulario y la lista.
+ * Es la pantalla principal que reúne todos los elementos de nuestra aplicación.
  */
 
 import ClaimForm from './components/ClaimForm.jsx';
 
 /**
- * CONCEPTO: JSX (JavaScript XML)
- * Es una extensión de sintaxis para JavaScript que permite escribir estructuras
- * parecidas a HTML directamente dentro del código JS. React lo transforma internamente
- * en objetos JavaScript estándar para construir el DOM virtual.
+ * CONCEPTO: JSX
+ * Es una forma de escribir código visual parecido a HTML dentro de JavaScript.
+ * Nos permite armar la pantalla de forma fácil y directa.
  */
 
 /**
- * CONCEPTO: Componente Funcional
- * En el React contemporáneo, un componente es una función regular de JavaScript
- * que retorna elementos en formato JSX. El nombre de la función SIEMPRE debe iniciar
- * con letra mayúscula (ej. App, ClaimForm) para que React lo distinga de una etiqueta HTML nativa.
+ * CONCEPTO: Componente
+ * Es una función que devuelve lo que queremos mostrar en pantalla (JSX).
+ * Siempre empieza con mayúscula (ej: App) para distinguirlo de una etiqueta normal de HTML.
  */
 
 function App() {
-  /**
-   * Renderiza la vista principal del proyecto.
-   * QUÉ HACE: Retorna el encabezado institucional y el formulario de captura.
-   * POR QUÉ SE HIZO ASÍ: Mantener App como un contenedor limpio permite que cada parte de la pantalla
-   * esté modularizada en componentes independientes y fáciles de mantener.
-   */
+  // QUÉ HACE: Muestra el título del sistema y el formulario de siniestros.
+  // POR QUÉ: Separar la pantalla en partes pequeñas hace el código más ordenado y fácil de mantener.
   return (
     <main className="app-container">
       <header className="app-header">
