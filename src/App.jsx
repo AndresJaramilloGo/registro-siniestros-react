@@ -6,12 +6,6 @@
 import ClaimForm from './components/ClaimForm.jsx';
 
 /**
- * CONCEPTO: JSX
- * Es una forma de escribir código visual parecido a HTML dentro de JavaScript.
- * Nos permite armar la pantalla de forma fácil y directa.
- */
-
-/**
  * CONCEPTO: Componente
  * Es una función que devuelve lo que queremos mostrar en pantalla (JSX).
  * Siempre empieza con mayúscula (ej: App) para distinguirlo de una etiqueta normal de HTML.
@@ -23,7 +17,7 @@ function App() {
   return (
     <main className="app-container">
       <header className="app-header">
-        <h1 className="app-title">Aseguradora Nacional</h1>
+        <h1 className="app-title">Reaseguradora</h1>
         <p className="app-description">Portal de Registro y Control de Siniestros</p>
       </header>
 

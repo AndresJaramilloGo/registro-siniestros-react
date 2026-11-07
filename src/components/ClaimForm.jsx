@@ -7,6 +7,7 @@
 import { useState } from 'react';
 import FormField from './FormField.jsx';
 import { validateClaimForm } from '../utils/validators.js';
+import { logOk, logError } from '../utils/logger.js';
 
 /**
  * CONCEPTO: Componente Controlado
@@ -66,8 +67,8 @@ function ClaimForm() {
     }
   };
 
-  // QUÉ HACE: Valida los 9 campos y abre la ventana emergente solo si no hay ningún error.
-  // POR QUÉ: e.preventDefault() detiene la recarga del navegador y validateClaimForm centraliza las reglas.
+  // QUÉ HACE: Valida los 9 campos, emite logs en consola y abre la ventana emergente solo si no hay ningún error.
+  // POR QUÉ: e.preventDefault() detiene la recarga del navegador, validateClaimForm centraliza las reglas y logger informa el resultado.
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -77,11 +78,14 @@ function ClaimForm() {
     // Si el objeto de errores tiene al menos una propiedad, significa que algo falló
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
+      const camposInvalidos = Object.keys(validationErrors).join(', ');
+      logError('Validacion de formulario fallida', `Campos con error: ${camposInvalidos}`);
       return; // Detenemos el envío
     }
 
-    // Si todo está correcto, limpiamos errores y mostramos la ventana emergente
+    // Si todo está correcto, registramos log de éxito, limpiamos errores y mostramos la ventana emergente
     setErrors({});
+    logOk('Formulario de siniestro validado correctamente');
     setModalData({ ...formData });
   };
 
