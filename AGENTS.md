@@ -1,14 +1,25 @@
 # ROL
 Actúa como mentor y desarrollador senior de React. Construye el proyecto y enséñame mientras lo haces.
 
+# PALETA DE COLORES (IDENTIDAD INSTITUCIONAL ECUARE)
+- Azul corporativo primario (sidebar, botones, títulos, foco): `#232F84` (RGB: 35, 47, 132)
+- Azul oscuro hover / interacción: `#192261`
+- Naranja corporativo acento (detalles, marcas obligatorias, acento sidebar): `#EA6A27`
+- Fondo principal de pantalla: `#FFFFFF` (Blanco puro, limpio y despejado)
+- Superficie de tarjetas y contenedor: `#FFFFFF` con borde `#E2E8F0`
+- Texto principal: `#1E293B` (Gris oscuro de alta legibilidad)
+- Texto secundario / atenuado: `#64748B`
+- Estado de error: `#DC2626` (Fondo suave de alerta: `#FEF2F2`)
+- Estado de éxito: `#16A34A`
+
 # REGLAS DE CÓDIGO
 - Código simple y legible por encima de código "elegante". Nada de trucos avanzados.
-- Nombres de componentes en PascalCase (ClaimForm, FormField, ClaimList).
-- Nombres de variables y funciones en inglés (formData, handleSubmit, useClaims) para alinearse con los estándares de la industria y la estructura técnica.
+- Nombres de componentes en PascalCase (ClaimForm, FormField, ClaimList, Sidebar).
+- Nombres de variables y funciones en inglés (formData, handleSubmit, useClaims, isOpen) para alinearse con los estándares de la industria y la estructura técnica.
 - Los textos visibles al usuario en la interfaz y los comentarios didácticos se mantienen en español.
 - Cada archivo empieza con un comentario de 2-3 líneas: qué hace y por qué existe.
 - Cada función lleva un comentario en español explicando QUÉ hace y POR QUÉ se hizo así.
-- Cuando uses un concepto de React por primera vez (estado, props, evento, key, useEffect, hook personalizado, componente controlado), añade un comentario que empiece con "CONCEPTO:" y lo explique en lenguaje sencillo.
+- Cuando uses un concepto de React por primera vez (estado, props, evento, key, useEffect, hook personalizado, componente controlado, menú desplegable), añade un comentario que empiece con "CONCEPTO:" y lo explique en lenguaje sencillo.
 - Las validaciones van en `validators.js` como funciones separadas, no mezcladas dentro del formulario.
 - Los inputs deben ser "controlados" (su valor viene del estado de React).
 - Accesibilidad básica: cada input con su `<label>` asociado.
@@ -37,7 +48,7 @@ La aplicación debe permitir:
 - Correo electrónico (obligatorio, formato válido)
 - Fecha del siniestro (obligatoria, no puede ser una fecha futura)
 - Tipo de siniestro (obligatorio, lista desplegable: Choque, Robo, Incendio, Daños por agua, Salud, Otro)
-- Monto estimado de la pérdida (obligatorio, número mayor que 0)
+- Monto estimado de la pérdida (obligatorio, número mayor que 0, hasta 10 dígitos enteros y máximo 2 decimales)
 - Descripción de lo ocurrido (obligatoria, mínimo 20 caracteres, máximo 500)
 
 # STACK TÉCNICO
@@ -48,9 +59,10 @@ La aplicación debe permitir:
 
 # ESTRUCTURA DE ARCHIVOS (respétala)
 src/
-  App.jsx                  -> componente principal, junta todo
+  App.jsx                  -> componente principal, junta todo (layout con Sidebar)
   main.jsx                 -> punto de entrada (generado por Vite)
   components/
+    Sidebar.jsx            -> barra lateral de navegación con menú desplegable (color #232F84)
     ClaimForm.jsx          -> el formulario completo
     FormField.jsx          -> campo reutilizable (etiqueta + input + mensaje de error)
     ClaimList.jsx          -> lista de siniestros guardados
@@ -61,7 +73,7 @@ src/
     logger.js              -> funciones estandarizadas de log en consola (logOk, logError)
     validators.js          -> funciones puras de validación, una por regla
   styles/
-    app.css
+    app.css                -> hoja de estilos con paleta institucional
 docs/
   ARQUITECTURA.md          -> explicación del proyecto (ver sección ENTREGABLES)
 
@@ -69,11 +81,13 @@ docs/
 - [x] **Fase 1: Configuración base y formulario inicial**
   - Proyecto configurado con Vite y React.
   - Componente base `FormField` y primeros campos controlados.
-- [x] **Fase 2: 9 campos completos, validaciones y logs**
+- [x] **Fase 2: 9 campos completos, validaciones, logs e identidad visual**
   - Implementación completa de los 9 campos en `ClaimForm.jsx`.
   - Módulo `validators.js` con validaciones puras.
-  - Módulo `logger.js` integrado reportando validaciones exitosas o fallidas en consola.
+  - Módulo `logger.js` integrado reportando validaciones en consola.
   - Modal informativo de confirmación de captura.
+  - Paleta institucional EcuaRE integrada (Azul `#232F84`, Naranja `#EA6A27`, Blanco `#FFFFFF` y Logo).
+  - Barra lateral `Sidebar.jsx` con menús desplegables e identidad institucional.
 - [ ] **Fase 3: Persistencia y lista de siniestros**
   - Hook personalizado `useClaims.js` con persistencia en `localStorage`.
   - Componentes `ClaimList.jsx` y `ClaimItem.jsx` para mostrar y eliminar siniestros.

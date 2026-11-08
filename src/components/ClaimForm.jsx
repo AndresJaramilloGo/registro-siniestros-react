@@ -49,10 +49,19 @@ function ClaimForm() {
   // Guarda los mensajes de error de cada campo
   const [errors, setErrors] = useState({});
 
-  // QUÉ HACE: Actualiza la variable del campo donde el usuario está escribiendo.
-  // POR QUÉ: Con una sola función manejamos los 9 campos usando el atributo name de cada casilla ([name]).
+  // QUÉ HACE: Actualiza la variable del campo donde el usuario está escribiendo y restringe caracteres excedentes en el monto.
+  // POR QUÉ: Con una sola función manejamos los 9 campos y evitamos que se escriban más de 10 dígitos enteros o más de 2 decimales en el monto.
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    // Control de entrada para el monto: máximo 10 dígitos enteros y hasta 2 decimales para centavos
+    if (name === 'estimatedAmount' && value !== '') {
+      const amountPattern = /^\d{0,20}(\.\d{0,2})?$/;
+      if (!amountPattern.test(value)) {
+        return; // Ignora el tipeo si supera 10 dígitos o agrega un tercer decimal
+      }
+    }
+
     setFormData((prevData) => ({
       ...prevData,
       [name]: value
@@ -203,11 +212,12 @@ function ClaimForm() {
             name="estimatedAmount"
             type="number"
             step="0.01"
-            min="0"
+            min="0.01"
+            max="9999999999.99"
             value={formData.estimatedAmount}
             onChange={handleChange}
             error={errors.estimatedAmount}
-            placeholder="Ej: 1500.00"
+            placeholder="Ej: 1500.50"
             required
           />
 

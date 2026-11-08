@@ -109,16 +109,31 @@ export function validateClaimType(value) {
   return '';
 }
 
-// QUÉ HACE: Revisa que el monto sea un número y sea mayor que 0.
-// POR QUÉ: Una pérdida debe tener un valor económico real y positivo.
+// QUÉ HACE: Revisa que el monto sea un número válido, mayor a 0, con tope de 10 dígitos y hasta 2 decimales.
+// POR QUÉ: Un siniestro debe tener una pérdida económica real, con formato estándar de moneda y sin números excesivos.
 export function validateEstimatedAmount(value) {
-  if (value === '' || value === null || value === undefined) {
+  const text = String(value || '').trim();
+  if (!text) {
     return 'El monto estimado de la pérdida es obligatorio.';
   }
-  const number = Number(value);
+
+  // Verifica que tenga formato numérico y no más de 2 cifras decimales para los centavos
+  const decimalFormat = /^\d+(\.\d{1,2})?$/;
+  if (!decimalFormat.test(text)) {
+    return 'El monto solo debe contener números y hasta un máximo de 2 decimales.';
+  }
+
+  const number = Number(text);
   if (isNaN(number) || number <= 0) {
     return 'El monto estimado debe ser un número mayor a 0.';
   }
+
+  // Límite corporativo del sistema: hasta 10 dígitos enteros ($9,999,999,999.99)
+  const maxAllowedAmount = 9999999999.99;
+  if (number > maxAllowedAmount) {
+    return 'El monto no puede superar $9,999,999,999.99 (máximo 10 dígitos enteros).';
+  }
+
   return '';
 }
 
